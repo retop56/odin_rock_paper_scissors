@@ -4,6 +4,16 @@ function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
+function getUserChoice() {
+  while (true) {
+    let userChoice = prompt("Make a choice! Rock, Paper, or Scissors!");
+    if (choices.indexOf(userChoice) === -1) {
+      alert("That was an invalid choice! Please try again!");
+    } else {
+      return userChoice;
+    }
+  }
+}
 function playRound(playerSelection, computerSelection) {
   const winValue = 0;
   const loseValue = 1;
@@ -78,7 +88,7 @@ function game() {
   }
   for (let i = 0; i < 5; i++) {
     let computerSelection = getComputerChoice();
-    let playerSelection = "rock";
+    let playerSelection = getUserChoice();
     updateScore(playRound(playerSelection, computerSelection));
   }
 }
