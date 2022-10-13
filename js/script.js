@@ -4,16 +4,6 @@ function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function getUserChoice() {
-  while (true) {
-    let userChoice = prompt("Make a choice! Rock, Paper, or Scissors!");
-    if (choices.indexOf(userChoice) === -1) {
-      alert("That was an invalid choice! Please try again!");
-    } else {
-      return userChoice;
-    }
-  }
-}
 function playRound(playerSelection, computerSelection) {
   const winValue = 0;
   const loseValue = 1;
@@ -77,20 +67,36 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function updateScore(resultValue) {
+  score[resultValue] += 1;
+  console.log(
+    `The score is now:\nWins: ${score[0]}\nLosses: ${score[1]}\nTies: ${score[2]}`
+  );
+}
+
 function game() {
   const score = [0, 0, 0];
-
-  function updateScore(resultValue) {
-    score[resultValue] += 1;
-    console.log(
-      `The score is now:\nWins: ${score[0]}\nLosses: ${score[1]}\nTies: ${score[2]}`
-    );
-  }
-  for (let i = 0; i < 5; i++) {
-    let computerSelection = getComputerChoice();
-    let playerSelection = getUserChoice();
-    updateScore(playRound(playerSelection, computerSelection));
-  }
 }
 
 game();
+
+const rockButton = document.createElement("button");
+rockButton.textContent = "Rock";
+document.body.append(rockButton);
+rockButton.addEventListener("click", (e) =>
+  playRound("rock", getComputerChoice())
+);
+
+const paperButton = document.createElement("button");
+paperButton.textContent = "Paper";
+document.body.append(paperButton);
+paperButton.addEventListener("click", (e) =>
+  playRound("paper", getComputerChoice())
+);
+
+const scissorsButton = document.createElement("button");
+scissorsButton.textContent = "Scissors";
+document.body.append(scissorsButton);
+scissorsButton.addEventListener("click", (e) =>
+  playRound("scissors", getComputerChoice())
+);
