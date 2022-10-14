@@ -162,27 +162,6 @@ function startNewGame() {
 
 const score = [0, 0, 0];
 
-const rockButton = document.createElement("button");
-rockButton.textContent = "Rock";
-document.body.append(rockButton);
-rockButton.addEventListener("click", (e) =>
-  playRound("rock", getComputerChoice())
-);
-
-const paperButton = document.createElement("button");
-paperButton.textContent = "Paper";
-document.body.append(paperButton);
-paperButton.addEventListener("click", (e) =>
-  playRound("paper", getComputerChoice())
-);
-
-const scissorsButton = document.createElement("button");
-scissorsButton.textContent = "Scissors";
-document.body.append(scissorsButton);
-scissorsButton.addEventListener("click", (e) =>
-  playRound("scissors", getComputerChoice())
-);
-
 const resultsDiv = document.createElement("div");
 document.body.append(resultsDiv);
 
@@ -190,12 +169,42 @@ const scoreString = document.createElement("h1");
 scoreString.textContent = `The score is:\n${score[0]} wins\n${score[1]} losses\n${score[2]} ties`;
 resultsDiv.append(scoreString);
 
+const roundResultContainer = document.createElement("div");
+roundResultContainer.classList.add("result-container");
+document.body.append(roundResultContainer);
+
 const roundResultString = document.createElement("p");
-resultsDiv.append(roundResultString);
+roundResultString.classList.add("result-string");
+roundResultContainer.append(roundResultString);
 
 const winnerString = document.createElement("h1");
 resultsDiv.append(winnerString);
 winnerString.style.display = "none";
+
+const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("button-container");
+document.body.append(buttonContainer);
+
+const rockButton = document.createElement("button");
+rockButton.textContent = "Rock";
+buttonContainer.append(rockButton);
+rockButton.addEventListener("click", (e) =>
+  playRound("rock", getComputerChoice())
+);
+
+const paperButton = document.createElement("button");
+paperButton.textContent = "Paper";
+buttonContainer.append(paperButton);
+paperButton.addEventListener("click", (e) =>
+  playRound("paper", getComputerChoice())
+);
+
+const scissorsButton = document.createElement("button");
+scissorsButton.textContent = "Scissors";
+buttonContainer.append(scissorsButton);
+scissorsButton.addEventListener("click", (e) =>
+  playRound("scissors", getComputerChoice())
+);
 
 const newGameButton = document.createElement("button");
 newGameButton.textContent = "New Game";
